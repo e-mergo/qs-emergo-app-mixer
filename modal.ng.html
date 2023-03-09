@@ -1,0 +1,56 @@
+<lui-dialog id="qs-emergo-app-mixer-modal" x-variant="{{::variant}}" class="qv-confirm-dialog qs-emergo-modal">
+	<lui-dialog-header>
+		<lui-dialog-title>App Mixer - Select a visualization</lui-dialog-title>
+		<button type="button" qva-activate="close()" class="qs-emergo-modal-close lui-icon lui-icon--close" q-title-translation="Common.Close"></button>
+	</lui-dialog-header>
+	<lui-dialog-body class="modal-content" ng-class="{ loading: loading }">
+		<div class="content-navigation">
+			<div class="content-navigation__left">
+				<lui-button class="select-app" ng-class="{'lui-active': isAppListActive()}" title="Select an app" qva-activate="toggleAppSelectionPopup()">
+					<span class="button-text">{{app.model.layout.qTitle}}</span>
+					<span class="lui-button__caret lui-caret"></span>
+				</lui-button>
+			</div>
+
+			<div class="content-navigation__right">
+				<div class="lui-buttongroup" ng-if="!loading && !nothingFound">
+					<lui-button class="select-sheet" ng-class="{'lui-active': isSheetListActive()}" q-title-translation="Common.Sheets" qva-activate="toggleSheetSelectionPopup()" ng-if="loading || !nothingFound">
+						<span class="qv-loader" ng-if="loading"></span>
+						<span class="lui-icon lui-button__icon lui-icon--sheet" aria-hidden="true"></span>
+						<span class="button-text" ng-if="!loading">{{getActiveSheet('title')}}</span>
+						<span class="lui-button__caret lui-caret"></span>
+					</lui-button>
+					<lui-button class="qs-emergo-app-mixer-modal-previous-sheet-button" qva-activate="goToPrevSheet()" ng-disabled="!canPrevSheet()" q-title-translation="{{prevSheetTitle}}"><i class="lui-icon lui-icon--previous lui-button__icon"></i></lui-button>
+					<lui-button class="qs-emergo-app-mixer-modal-next-sheet-button" qva-activate="goToNextSheet()" ng-disabled="!canNextSheet()" q-title-translation="{{nextSheetTitle}}"><i class="lui-icon lui-icon--next lui-button__icon"></i></lui-button>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-section">
+			<div class="modal-loading-container" ng-show="loading">
+				<div class="qv-loader modal-loader"></div>
+			</div>
+
+			<!-- Main -->
+			<div class="app-sheet-preview" ng-show="!loading && !noObjectsFound && !nothingFound">
+				<iframe ng-src="{{getActiveSheet('url')}}" qs-emergo-app-mixer-onload="iframeOnload()" class="app-sheet-preview-iframe" frameborder="0"></iframe>
+			</div>
+
+			<!-- No objects found -->
+			<div class="no-objects-found" ng-show="!loading && noObjectsFound">
+				<h2 class="inline-title">There were no objects found in the selected sheet</h2>
+				<lui-button qva-activate="toggleSheetSelectionPopup()">Select a different sheet</lui-button>
+			</div>
+
+			<!-- Nothing found -->
+			<div class="nothing-found" ng-show="!loading && nothingFound">
+				<h2 class="inline-title">There were no sheets found in the selected app</h2>
+				<lui-button qva-activate="toggleAppSelectionPopup()">Select a different app</lui-button>
+			</div>
+		</div>
+	</lui-dialog-body>
+	<lui-dialog-footer>
+		<lui-button x-variant="{{::variant}}" ng-if="!input.hideCancelButton" ng-click="close()">{{::cancelLabel}}</lui-button>
+		<lui-button x-variant="{{::variant}}" ng-if="!input.hideOkButton" ng-click="confirm()">{{::okLabel}}</lui-button>
+	</lui-dialog-footer>
+</lui-dialog>

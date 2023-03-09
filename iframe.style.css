@@ -1,0 +1,51 @@
+/**
+ * E-mergo App Mixer modal iframe Styles
+ *
+ * @package E-mergo Tools Bundle
+ */
+
+/* Visualization */
+
+.qv-client.qs-emergo-app-mixer-linkInteractionOn .single-full-height div[data-qid]:hover,
+.qv-client.qs-emergo-app-mixer-linkInteractionOn .single-full-height div[data-qid]:hover .qv-viz,
+.qv-client.qs-emergo-app-mixer-linkInteractionOn .single-full-height div[data-qid]:hover .qv-object-title,
+.qv-client.qs-emergo-app-mixer-linkInteractionOn .single-full-height div[data-qid]:hover .qv-object-subtitle {
+	cursor: pointer;
+}
+
+.single-full-height div[data-qid]:focus .qv-object-wrapper {
+	box-shadow: none; /* Undo focus style */
+}
+
+/* Modal */
+
+.single-object .single-full-height #content {
+	padding-top: 10px;
+}
+
+.single-full-height .qvt-sheet div[data-qid]:hover,
+.single-full-height .qvt-sheet div[data-qid]:hover .qv-viz,
+.single-full-height .qvt-sheet div[data-qid]:hover .qv-object-title,
+.single-full-height .qvt-sheet div[data-qid]:hover .qv-object-subtitle {
+	cursor: pointer;
+}
+
+/* Mimic :focus style */
+.single-full-height .qvt-sheet div[data-qid].qs-emergo-app-mixer-selected {
+	border-color: #3f8ab3;
+	border-radius: 2px;
+	box-shadow: 0 0 0 1px rgba(63,138,179,.4);
+}
+
+/* Add overlay */
+.single-full-height .qvt-sheet div[data-qid].qs-emergo-app-mixer-selected:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(63,138,179,.4);
+	z-index: 2;
+	pointer-events: none;
+}

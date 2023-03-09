@@ -1,0 +1,307 @@
+/**
+ * E-mergo App Mixer Styles
+ *
+ * @package E-mergo Tools Bundle
+ */
+
+.qs-emergo-app-mixer .open-edit-mode {
+	margin-left: 5px;
+	padding: 0px 10px;
+	background: #fff;
+}
+
+.qs-emergo-app-mixer .open-edit-mode:active {
+	background: rgb(89,89,89);
+}
+
+.qs-emergo-app-mixer,
+.qs-emergo-app-mixer .obj-container {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+.qs-emergo-app-mixer .obj-container iframe {
+	height: 100%;
+	width: 100%;
+}
+
+.qv-panel.qv-mode-edit .qs-emergo-app-mixer .obj-container iframe {
+	pointer-events: none;
+}
+
+.qs-emergo-app-mixer .mixer-loading {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.qs-emergo-app-mixer .modal-loader {
+	height: 38px;
+	width: 38px;
+	display: inline-block;
+}
+
+.qs-emergo-app-mixer.loading .mixer-loading ~ div,
+.qs-emergo-app-mixer:not(.loading) .mixer-loading {
+	display: none;
+}
+
+.qv-panel.qv-mode-edit .qs-emergo-app-mixer.obj-selected .obj-container {
+	opacity: .4;
+	z-index: 0;
+}
+
+.qs-emergo-app-mixer.obj-selected > .requirements-wrapper .requirements .header {
+	position: relative;
+}
+
+.qs-emergo-app-mixer .open-button {
+	height: 32px;
+	width: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.qs-emergo-app-mixer.obj-selected .requirements .lui-button:not(:active):not(.lui-active) {
+	background-color: #fff;
+}
+
+.qv-layout-small .qs-emergo-app-mixer .open-button,
+.qv-layout-xsmall .qs-emergo-app-mixer .open-button,
+.qv-layout-spark .qs-emergo-app-mixer .open-button {
+	height: 28px;
+	width: 150px;
+}
+
+.qs-emergo-app-mixer .link {
+	cursor: pointer;
+	box-sizing: border-box;
+	border: 2px solid transparent;
+}
+
+.touch-off .qs-emergo-app-mixer .link:hover {
+	border: 2px solid #ccc;
+	border-radius: 4px;
+}
+
+.touch-off .qs-emergo-app-mixer .link:active {
+	border: 2px solid #595959;
+}
+
+.qs-emergo-app-mixer .click-again-overlay {
+	flex: 0 1 auto;
+	position: absolute;
+	background: rgba(0,0,0,.7);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 6px;
+	color: #fff;
+	display: flex;
+	visibility: hidden;
+	opacity: 0;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-size: 13px;
+	text-align: center;
+}
+
+.qs-emergo-app-mixer .click-again-overlay.show {
+	visibility: visible;
+	animation: fadeInOpacity .3s linear forwards;
+}
+
+@keyframes fadeInOpacity {
+	0%   { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.qs-emergo-app-mixer .ellips-text {
+	height: auto;
+	line-height: auto;
+	white-space: nowrap;
+	-webkit-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.qs-emergo-app-mixer .sheetLinkTitle {
+	font-size: 1.7em;
+	max-width: 100%;
+}
+
+/* Modal */
+
+#qs-emergo-app-mixer-modal {
+	height: 100%;
+	max-height: 855px;
+	max-width: 1280px; /* Dialog's default is 500px */
+}
+
+#qs-emergo-app-mixer-modal .modal-content {
+	display: flex;
+	flex-direction: column;
+	padding: 0px;
+}
+
+#qs-emergo-app-mixer-modal .modal-content .content-navigation {
+	display: flex;
+	padding: 10px;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+#qs-emergo-app-mixer-modal .modal-content .content-navigation__left {
+	flex: 1 1 40%;
+	justify-content: flex-start;
+}
+
+#qs-emergo-app-mixer-modal .modal-content .content-navigation__right {
+	flex: 1 1 60%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+#qs-emergo-app-mixer-modal .modal-content .content-navigation .lui-button .qv-loader {
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+	margin: 4px 8px;
+}
+
+#qs-emergo-app-mixer-modal .modal-content .content-section {
+	position: relative;
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#qs-emergo-app-mixer-modal .modal-loading-container {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+#qs-emergo-app-mixer-modal .modal-loader {
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	height: 20%;
+	width: 20%;
+	display: inline-block;
+}
+
+#qs-emergo-app-mixer-modal .modal-content .app-sheet-preview {
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	overflow: hidden;
+}
+
+#qs-emergo-app-mixer-modal .modal-content .app-sheet-preview-iframe {
+	height: calc(100% / .8);
+	width: calc(100% / .8);
+	margin: 0;
+	padding: 0;
+	transform: scale(.8);
+	transform-origin: 0 0;
+}
+
+#qs-emergo-app-mixer-modal .modal-content .content-section .no-objects-found,
+#qs-emergo-app-mixer-modal .modal-content .content-section .nothing-found {
+	text-align: center;
+}
+
+/* Card-based themes */
+
+.qv-client.qv-card #qv-stage-container #grid .qv-object-qs-emergo-app-mixer .qv-object-header.thin,
+.touch-off .qv-client.qv-card #qv-stage-container #grid .qv-object-qs-emergo-app-mixer .qv-object-header.thin {
+	height: 10px !important;
+	border: 0px;
+}
+
+.qv-client.qv-card #qv-stage-container #grid .qv-object-qs-emergo-app-mixer .qv-object-wrapper .qv-object {
+	border: 0px;
+}
+
+/* Layout changes per QS Nov 2022 */
+
+.lui-modal-background:not(.lui-fade):has(+ .qs-emergo-modal) {
+	opacity: .5;
+}
+
+#qs-emergo-app-mixer-modal.qs-emergo-modal {
+	display: flex;
+	flex-direction: column;
+	width: 93%;
+/*	height: 93%;*/
+/*	max-height: calc(100% - 24px);*/
+	width: calc(100% - 24px);
+	color: #404040;
+}
+
+.qs-emergo-modal .lui-dialog__header {
+	display: flex;
+	justify-content: space-between;
+	height: 24px;
+	padding: 12px 8px 12px 12px;
+	box-sizing: content-box;
+	background-color: #fafafa;
+	border-bottom: 1px rgba(0, 0, 0, 0.15) solid;
+	line-height: 24px;
+}
+
+.qs-emergo-modal .lui-dialog__title {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.qs-emergo-modal .qs-emergo-modal-close {
+	height: 30px;
+	margin-top: -2px;
+	padding: 7px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+#qs-emergo-app-mixer-modal.qs-emergo-modal .modal-content {
+	max-height: auto;
+	background-color: #f2f2f2;
+}
+
+.qs-emergo-modal .lui-dialog__footer {
+	display: flex;
+	height: auto;
+	justify-content: flex-end;
+	background-color: #fafafa;
+	border-top: 1px rgba(0, 0, 0, 0.15) solid;
+}
+
+.qs-emergo-modal .lui-dialog__footer .lui-button {
+	height: 32px;
+	color: #404040;
+	background-color: rgba(255,255,255,.6);
+	font-size: 14px;
+}
+
+.qs-emergo-modal .lui-dialog__footer .lui-button:hover {
+	background-color: rgba(64, 64, 64, 0.05);
+	border: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.qs-emergo-modal .lui-dialog__footer .lui-button:active {
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0.23);
+}

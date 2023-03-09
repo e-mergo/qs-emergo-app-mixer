@@ -1,0 +1,33 @@
+<div class="qs-emergo-app-mixer" ng-class="{'obj-selected': objId, 'loading': loading}" aria-hidden="false">
+	<div class="mixer-loading">
+		<div class="qv-loader modal-loader"></div>
+	</div>
+
+	<div id="qs-emergo-app-mixer-{{$id}}" class="obj-container qv-viz" ng-class="{'link': linkInteractionOn && !object.inEditState() && !options.noInteraction}" qva-activate="onShowVerifyDialog()">
+		<iframe ng-src="{{singleObjectUrl}}" qs-emergo-app-mixer-onload="iframeOnload()" frameborder="0"></iframe>
+		<div class="click-again-overlay" ng-class="{'show': showVerifyDialog && !object.inEditState()}" ng-style="verifyDialogStyle" qva-activate="linkToSheet()">
+			<span q-translation="properties.kpi.verifyToGoSheet"></span>
+			<span class="sheetLinkTitle ellips-text" ng-bind="sheetLinkTitle"></span>
+		</div>
+	</div>
+
+	<div qv-requirements class="requirements-wrapper" ng-class="{'incomplete': !objId && !object.inEditState()}" aria-hidden="false" ng-show="!objId || object.inEditState()">
+		<div class="requirements">
+			<h2 class="header">
+				<i class="object-icon lui-icon lui-icon--shapes"></i>
+			</h2>
+
+			<lui-button ng-if="object.inEditState()" class="open-button" ng-class="{'lui-active': isActive()}" qva-activate="open()">
+				{{objId ? 'Change Visualization' : 'Select App'}}
+			</lui-button>
+
+			<p ng-if="!object.inEditState() && !objId" class="incomplete-text">
+				<span ng-if="canSwitchToEdit">Use this extension in
+					<button class="lui-button open-edit-mode" qva-activate="switchToEdit()">Edit mode</button>
+				</span>
+				<span ng-if="!canSwitchToEdit" q-translation="Visualization.Requirements.IncompleteVisualization"></span>
+			</p>
+		</div>
+	</div>
+</div>
+</div>
