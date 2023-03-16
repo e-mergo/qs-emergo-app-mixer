@@ -15,11 +15,18 @@ define([
 ], function( qlik, translator, util, qext ) {
 
 	/**
+	 * Holds the QEXT data
+	 *
+	 * @type {Object}
+	 */
+	var qext = JSON.parse(qext),
+
+	/**
 	 * Holds the settings of the configuration sub-panel
 	 *
 	 * @type {Object}
 	 */
-	var configuration = {
+	configuration = {
 		label: "Configuration",
 		type: "items",
 		component: "expandable-items",
@@ -266,7 +273,7 @@ define([
 	 */
 	about = {
 		label: function() {
-			return "About " + JSON.parse(qext).title;
+			return "About ".concat(qext.title);
 		},
 		type: "items",
 		items: {
@@ -276,7 +283,7 @@ define([
 			},
 			version: {
 				label: function() {
-					return "Version: " + JSON.parse(qext).version;
+					return "Version: ".concat(qext.version);
 				},
 				component: "text"
 			},
