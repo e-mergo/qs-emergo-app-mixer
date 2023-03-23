@@ -4,6 +4,8 @@
  * @param  {Object} qlik          Qlik API
  * @param  {Object} translator    Qlik's translation API
  * @param  {Object} util          E-mergo utility functions
+ * @param  {Object} docs          E-mergo documentation functions
+ * @param  {String} readme        Extension readme
  * @param  {String} qext          Extension QEXT data
  * @return {Object}               Extension Property Panel definition
  */
@@ -11,8 +13,10 @@ define([
 	"qlik",
 	"translator",
 	"./util/util",
+	"./docs/docs",
+	"text!./README.md",
 	"text!./qs-emergo-app-mixer.qext"
-], function( qlik, translator, util, qext ) {
+], function( qlik, translator, util, docs, readme, qext ) {
 
 	/**
 	 * Holds the QEXT data
@@ -296,7 +300,7 @@ define([
 				component: "button",
 				action: function() {
 					util.requireMarkdownMimetype().finally( function() {
-						window.open(window.requirejs.toUrl("extensions/qs-emergo-app-mixer/docs/docs.html"), "_blank");
+						docs.showModal(readme, qext);
 					});
 				}
 			}
