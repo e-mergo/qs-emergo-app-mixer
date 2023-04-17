@@ -719,7 +719,7 @@ define([
 			var props = $scope.layout.props;
 
 			// Override interaction when interaction in the parent's scope is not allowed
-			if ($scope.options.noInteraction) {
+			if ($scope.options && $scope.options.noInteraction) {
 				props.allowInteraction = false;
 			}
 
@@ -751,7 +751,7 @@ define([
 			$iframe.find("body")
 
 				// Adjust styles when linkToSheet is enabled
-				.toggleClass("qs-emergo-app-mixer-linkInteractionOn", $scope.linkInteractionOn && ! $scope.options.noInteraction);
+				.toggleClass("qs-emergo-app-mixer-linkInteractionOn", $scope.linkInteractionOn && ! ($scope.options && $scope.options.noInteraction));
 		},
 
 		// Holds the timeout of the linkToSheet dialog
@@ -830,7 +830,7 @@ define([
 		 * @return {Void}
 		 */
 		$scope.onShowVerifyDialog = function() {
-			if (! $scope.linkInteractionOn || $scope.object.inEditState() || $scope.options.noInteraction) {
+			if (! $scope.linkInteractionOn || $scope.object.inEditState() || ($scope.options && $scope.options.noInteraction)) {
 				return;
 			}
 
@@ -850,7 +850,7 @@ define([
 		 * @return {Void}
 		 */
 		$scope.linkToSheet = function() {
-			if (! $scope.linkInteractionOn || ! $scope.showVerifyDialog || $scope.object.inEditState() || $scope.options.noInteraction) {
+			if (! $scope.linkInteractionOn || ! $scope.showVerifyDialog || $scope.object.inEditState() || ($scope.options && $scope.options.noInteraction)) {
 				return;
 			}
 
