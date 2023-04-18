@@ -3,7 +3,7 @@
 	"name": "App Mixer",
 	"type": "visualization",
 	"author": "Laurens Offereins, E-mergo",
-	"version": "1.0-alpha",
+	"version": "1.0-beta",
 	"description": "Display visualizations from other apps.",
 	"icon": "shapes",
 	"preview": "logo-emergo.png",

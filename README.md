@@ -1,7 +1,7 @@
 ---
 Type: Qlik Sense Visualization Extension
 Name: E-mergo App Mixer
-Version: 1.0-alpha
+Version: 1.0-beta
 QEXT: qs-emergo-app-mixer.qext
 ---
 
@@ -66,10 +66,10 @@ Requests for additional features can be posted in the extension's GitHub reposit
 
 ## Changelog
 
-#### 1.0-alpha - QS Nov 2022
-- Public release.
+#### 1.0-beta - QS November 2022
+Public release. Ready for Qlik Cloud.
 
-#### 0.2.20200918 - QS Sept 2020
+#### 0.2.20200918 - QS September 2022
 - Added link-to-sheet navigation in the object's context menu.
 - Fixed addition of 'noselections' in the iframe's url.
 - Fixed selectability of the extension object in edit mode.

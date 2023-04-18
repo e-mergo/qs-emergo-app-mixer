@@ -234,7 +234,7 @@
 	border: 0px;
 }
 
-/* Layout changes per QS Nov 2022 */
+/* Layout changes per QS November 2022 */
 
 .lui-modal-background:not(.lui-fade):has(+ .qs-emergo-modal) {
 	opacity: .5;
@@ -243,9 +243,6 @@
 #qs-emergo-app-mixer-modal.qs-emergo-modal {
 	display: flex;
 	flex-direction: column;
-	width: 93%;
-/*	height: 93%;*/
-/*	max-height: calc(100% - 24px);*/
 	width: calc(100% - 24px);
 	color: #404040;
 }
