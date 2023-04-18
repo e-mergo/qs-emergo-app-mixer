@@ -41,9 +41,6 @@ Enables selection of dimensions within the visualization.
 #### Enable context menu
 Enables the context menu for the visualization, which usually contains export options.
 
-#### Language
-Sets the language for the visualization's interface.
-
 #### Theme
 Sets the theme for the visualization.
 
@@ -57,17 +54,9 @@ Clears the selections in the user's session for the visualization.
 Applies the selected bookmark in the user's session for the visualization.
 
 ### Link to Sheet
-Enables navigation to the visualization's original app sheet. Similar to the functionality in the KPI object, the user activates the link in two clicks - only when selections are not allowed. The navigation link is also available in the visualization's context menu, which is made easier to access as of QS Sept 2020.
+Enables navigation to the visualization's original app sheet. Similar to the functionality in the KPI object, the user activates the link in two clicks - only when selections are not allowed. The navigation link is also available in the visualization's context menu, which is made easier to access as of QS September 2022.
 
 ## FAQ
-
-### How does this extension compare to PinIt from Bitmetric?
-The PinIt application was launched by Bitmetric as a Qlik Sense tool that lives outside of the Qlik Sense hub. It provides a way of integrating visualizations from multiple apps into a single page, like this extension does. The key differences are:
-- Availibility to end users. The PinIt tool can be used by all end users within the license agreement, while this extension is only available for Qlik Sense users that can create and edit sheets (with a Professional license).
-- Cost. Beyond the first five users, the PinIt tool costs you money. This extension however is free and open source, regardless of the amount of users.
-- Installation. The PinIt tool is a separate application from Qlik Sense, while this extension is an extension like any other: quick and easy to distribute and use.
-- Features. This extension allows for per-visualization settings like allowing selections, changing language and theme, as well as applying bookmarks.
-- Context. Designing a summary page in the PinIt tool is limited to the features within that application, while this extension is part of the Qlik Sense sheet design workflow you already know and trust.
 
 ### Can I get support for this extension?
 E-mergo provides paid support through standard support contracts. For other scenarios, you can post your bugs or questions in the extension's GitHub repository.
