@@ -1,7 +1,7 @@
 ---
 Type: Qlik Sense Visualization Extension
 Name: E-mergo App Mixer
-Version: 1.0-beta.2
+Version: 1.0-beta.3
 QEXT: qs-emergo-app-mixer.qext
 ---
 
