@@ -64,6 +64,9 @@ E-mergo provides paid support through standard support contracts. For other scen
 ### Can you add feature X?
 Requests for additional features can be posted in the extension's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
+### Why does the extension crash on app selection in Qlik Cloud?
+The available API's in Qlik Cloud do not differentiate between apps with user access and those without user access. The same behavior is seen in the Qlik Cloud Catalog where apps may be listed that the current user has no access to, yet the user can still select and navigate to them. Only then does Qlik Cloud show whether the user has access to the app. To prevent the extension from crashing, only select apps that the user has access to.
+
 ## Changelog
 
 #### 1.0-beta - QS November 2022
