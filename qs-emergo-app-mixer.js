@@ -254,7 +254,7 @@ define([
 				 *
 				 * @return {Object} Popover methods
 				 */
-				var appList = uiUtil.uiSearchableListPopover({
+				var appSelector = uiUtil.uiSearchableListPopover({
 					title: translator.get("QCS.Common.Browser.Filter.ResourceType.Value.app"),
 					get: getAppsSetItems,
 					select: function( item ) {
@@ -273,7 +273,7 @@ define([
 				 *
 				 * @return {Object} Popover methods
 				 */
-				sheetList = uiUtil.uiSearchableListPopover({
+				sheetSelector = uiUtil.uiSearchableListPopover({
 					title: translator.get("Common.Sheets"),
 					get: function( setItems ) {
 						setItems($scope.sheets.map( function( a ) {
@@ -307,8 +307,8 @@ define([
 				};
 
 				// Map list.isActive() to scope
-				$scope.isAppListActive = appList.isActive;
-				$scope.isSheetListActive = sheetList.isActive;
+				$scope.isAppSelectorActive = appSelector.isActive;
+				$scope.isSheetSelectorActive = sheetSelector.isActive;
 
 				/**
 				 * Open the app selector
@@ -316,7 +316,7 @@ define([
 				 * @return {Void}
 				 */
 				$scope.toggleAppSelectionPopup = function() {
-					appList.isActive() ? appList.close() : appList.open();
+					appSelector.isActive() ? appSelector.close() : appSelector.open();
 				};
 
 				/**
@@ -325,7 +325,7 @@ define([
 				 * @return {Void}
 				 */
 				$scope.toggleSheetSelectionPopup = function() {
-					sheetList.isActive() ? sheetList.close() : sheetList.open();
+					sheetSelector.isActive() ? sheetSelector.close() : sheetSelector.open();
 				};
 
 				/**
@@ -369,7 +369,7 @@ define([
 					}
 
 					// Open connection with the selected app
-					var app = qlik.openApp(appId, { openWithoutData: true });
+					var app = qlik.openApp(appId);
 
 					// Start loading
 					$scope.loading = true;
@@ -510,8 +510,8 @@ define([
 				 * @return {Void}
 				 */
 				$scope.$on("$destroy", function() {
-					appList.close();
-					sheetList.close();
+					appSelector.close();
+					sheetSelector.close();
 				});
 			}],
 			template: modalTmpl,

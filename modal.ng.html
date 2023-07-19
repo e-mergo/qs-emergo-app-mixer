@@ -6,7 +6,7 @@
 	<lui-dialog-body class="modal-content" ng-class="{ loading: loading }">
 		<div class="content-navigation">
 			<div class="content-navigation__left">
-				<lui-button class="select-app" ng-class="{'lui-active': isAppListActive()}" title="Select an app" qva-activate="toggleAppSelectionPopup()">
+				<lui-button class="select-app" ng-class="{'lui-active': isAppSelectorActive()}" title="Select an app" qva-activate="toggleAppSelectionPopup()">
 					<span class="button-text">{{app.model.layout.qTitle}}</span>
 					<span class="lui-button__caret lui-caret"></span>
 				</lui-button>
@@ -14,7 +14,7 @@
 
 			<div class="content-navigation__right">
 				<div class="lui-buttongroup" ng-if="!loading && !nothingFound">
-					<lui-button class="select-sheet" ng-class="{'lui-active': isSheetListActive()}" q-title-translation="Common.Sheets" qva-activate="toggleSheetSelectionPopup()" ng-if="loading || !nothingFound">
+					<lui-button class="select-sheet" ng-class="{'lui-active': isSheetSelectorActive()}" q-title-translation="Common.Sheets" qva-activate="toggleSheetSelectionPopup()" ng-if="loading || !nothingFound">
 						<span class="qv-loader" ng-if="loading"></span>
 						<span class="lui-icon lui-button__icon lui-icon--sheet" aria-hidden="true"></span>
 						<span class="button-text" ng-if="!loading">{{getActiveSheet('title')}}</span>
