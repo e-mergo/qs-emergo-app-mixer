@@ -6,6 +6,7 @@
  *
  * @param  {Object} qlik                Qlik's core API
  * @param  {Object} qvangular           Qlik's Angular implementation
+ * @param  {Object} axios               Axios HTTP library
  * @param  {Object} $                   jQuery
  * @param  {Object} _                   Underscore
  * @param  {Object} $q                  Angular's promise library
@@ -24,6 +25,7 @@
 define([
 	"qlik",
 	"qvangular",
+	"axios",
 	"jquery",
 	"underscore",
 	"ng!$q",
@@ -38,7 +40,7 @@ define([
 	"text!./template.ng.html",
 	"text!./modal.ng.html",
 	"./directives/directives"
-], function( qlik, qvangular, $, _, $q, translator, Resize, props, initProps, util, uiUtil, css, iframeCss, tmpl, modalTmpl ) {
+], function( qlik, qvangular, axios, $, _, $q, translator, Resize, props, initProps, util, uiUtil, css, iframeCss, tmpl, modalTmpl ) {
 
 	// Add global styles to the page
 	util.registerStyle("qs-emergo-app-mixer", css);
@@ -51,21 +53,81 @@ define([
 	var currApp = qlik.currApp(),
 
 	/**
+	 * Holds the loaded apps
+	 *
+	 * This is loaded once when calling `currApp.global.getAppList()` to
+	 * prevent max listener errors on the related event emitter - or when
+	 * calling the Qlik Cloud's REST API to speed up interactivy.
+	 *
+	 * @type {Array}
+	 */
+	appList = (function( list ) {
+		// Qlik Cloud
+		if (util.isQlikCloud) {
+			/**
+			 * Listed apps may be locked for the user. This is the same behavior as in Qlik
+			 * Cloud's app catalog.
+			 *
+			 * @link https://qlik.dev/apis/rest/items
+			 */
+			axios("/api/v1/items?resourceType=app&noActions=true").then( function( resp ) {
+				function getNext( resp ) {
+
+					// Append items to already returned list
+					Array.prototype.push.apply(list, resp.data.map( function( a ) {
+						return {
+							value: a.name,
+							label: a.name,
+							id: a.resourceId
+						};
+					}));
+
+					if (resp.links && resp.links.next && resp.links.next.href) {
+						return axios(resp.links.next.href).then( function( resp ) {
+							return getNext(resp.data);
+						});
+					}
+				}
+
+				return getNext(resp.data);
+			}).catch(console.error);
+
+		// QS Client Managed or QS Desktop
+		} else {
+			currApp.global.getAppList( function( items ) {
+				Array.prototype.push.apply(list, items.map( function( a ) {
+					return {
+						value: a.qTitle,
+						label: a.qTitle,
+						id: a.qDocId
+					};
+				}));
+			}, { openWithoutData: true });
+		}
+
+		return list;
+	})([]),
+
+	/**
 	 * Query apps and set them as the searchable list's items
 	 *
 	 * @param  {Function} setItems
 	 * @return {Void}
 	 */
 	getAppsSetItems = function( setItems ) {
-		currApp.global.getAppList( function( items ) {
-			setItems(items.map( function( a ) {
-				return {
-					value: a.qTitle,
-					label: a.qTitle,
-					id: a.qDocId
-				};
-			}));
-		}, { openWithoutData: true });
+
+		// Wait for appList to be defined
+		var interval = setInterval( function() {
+			if ("undefined" !== typeof appList) {
+				setItems(appList);
+				clearInterval(interval);
+
+				// Refresh view to show the list, because calling `setItems()` does not
+				// display the list contents - by default it is only displayed after
+				// subsequent user interaction.
+				qvangular.$rootScope.$digest();
+			}
+		}, 150);
 	},
 
 	/**
